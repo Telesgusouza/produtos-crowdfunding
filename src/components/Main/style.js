@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.main`
   margin-top: -60px;
@@ -10,7 +10,7 @@ export const Container = styled.main`
   border-radius: 5px;
   padding: 0 40px 30px 40px;
 
-  box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
   img {
     margin: 0 auto;
@@ -44,6 +44,9 @@ export const bookmark = styled.div`
   background-color: rgb(240, 240, 240);
   border-radius: 50px;
 
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
   p {
     height: 100%;
     margin: 0;
@@ -52,6 +55,8 @@ export const bookmark = styled.div`
     line-height: 40px;
     font-size: 0.82em;
     font-weight: 600;
+    /* color: ${(props) => props.handleBookmark}; */
+    color: ${props=>props.bookmark};
   }
 
   img {

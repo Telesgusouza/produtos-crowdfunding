@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   h3 {
@@ -18,8 +18,19 @@ export const OptionsCrowdfunding = styled.div`
 
   p {
     margin: 15px 0;
-    font-size: .95em;
+    font-size: 0.95em;
   }
+
+  ${(props) =>
+    props.nullOption &&
+    css`
+      opacity: 0.5;
+      cursor: no-drop;
+
+      button {
+        cursor: no-drop;
+      }
+    `}
 `;
 
 export const ContainerTitle = styled.div`

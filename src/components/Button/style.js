@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  background-color: hsl(176, 50%, 47%);
+  background-color: ${props=>props.bg};
   color: white;
   font-weight: 600;
   
@@ -9,9 +9,14 @@ export const Container = styled.button`
   border: none;
   border-radius: ${(props) => props.border}px;
 
+  transition: all .2s ease-in-out;
   cursor: pointer;
 
   &:focus {
     outline: 0;
+  }
+
+  &:hover {
+    background-color: ${props=>props.bgHover};
   }
 `;

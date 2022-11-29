@@ -1,7 +1,15 @@
+import { useState } from "react";
 import Button from "../Button";
 import * as Styled from "./style";
 
 export default function ProjectInformation() {
+
+  const [viewCrowndfund, setViewCrowndfund] = useState(false);
+
+  function handleViewCrowndfund() {
+    setViewCrowndfund(p=>!p);
+  }
+
   return (
     <Styled.Container className="center sections">
       <h3>Sobre este projeto</h3>
@@ -20,7 +28,7 @@ export default function ProjectInformation() {
 
       <Styled.OptionsCrowdfunding>
         <Styled.ContainerTitle>
-          <h4>Coisa de bambo</h4>
+          <h4>Suporte de bambo</h4>
           <span>Doar $ 25 ou mais</span>
         </Styled.ContainerTitle>
 
@@ -37,61 +45,65 @@ export default function ProjectInformation() {
             <p>restantes</p>
           </div>
 
-          <Button>selecionar recompensa</Button>
+          <Button
+          onClick={handleViewCrowndfund}
+          >selecionar recompensa</Button>
         </Styled.ContainerButton>
       </Styled.OptionsCrowdfunding>
 
-
-      
       <Styled.OptionsCrowdfunding>
         <Styled.ContainerTitle>
-          <h4>Coisa de bambo</h4>
-          <span>Doar $ 25 ou mais</span>
+          <h4>Edição suporte preto</h4>
+          <span>Doar $ 75 ou mais</span>
         </Styled.ContainerTitle>
 
         <p>
-          Você obtém um suporte ergonômico feito de bambu natural. você nos
-          ajudou lançar nossa campanha promocional, e você será adicionado a um
-          especial Lista de membros apoiadores. 101 restantes Selecione
-          Recompensa
+          Você recebe um suporte de computador Black Special Edition e um
+          agradecimento pessoal. Você será adicionado ao nosso Apoiador lista de
+          membros. O envio está incluído.
         </p>
 
         <Styled.ContainerButton>
           <div>
-            <h5>101</h5>
+            <h5>64</h5>
             <p>restantes</p>
           </div>
 
-          <Button>selecionar recompensa</Button>
+          <Button
+          onClick={handleViewCrowndfund}
+          >selecionar recompensa</Button>
         </Styled.ContainerButton>
       </Styled.OptionsCrowdfunding>
-      
-      
 
-      
-      <Styled.OptionsCrowdfunding>
+      <Styled.OptionsCrowdfunding
+      nullOption
+      >
         <Styled.ContainerTitle>
-          <h4>Coisa de bambo</h4>
-          <span>Doar $ 25 ou mais</span>
+          <h4>mogno edição especial</h4>
+          <span>Doar $ 200 ou mais</span>
         </Styled.ContainerTitle>
 
         <p>
-          Você obtém um suporte ergonômico feito de bambu natural. você nos
-          ajudou lançar nossa campanha promocional, e você será adicionado a um
-          especial Lista de membros apoiadores. 101 restantes Selecione
-          Recompensa
+          Você ganha dois estandes de mogno da edição especial, uma camiseta do
+          Backer e um agradecimento pessoal. você será adicionado à nossa lista
+          de membros do Backer. O envio está incluído.
         </p>
 
         <Styled.ContainerButton>
           <div>
-            <h5>101</h5>
+            <h5>0</h5>
             <p>restantes</p>
           </div>
 
-          <Button>selecionar recompensa</Button>
+          <Button bg='#808080' bgHover='#808080' >selecionar recompensa</Button>
         </Styled.ContainerButton>
       </Styled.OptionsCrowdfunding>
 
+      {viewCrowndfund && (
+        <div>
+          <h1>ola mundo</h1>
+        </div>
+      )}
     </Styled.Container>
   );
 }
