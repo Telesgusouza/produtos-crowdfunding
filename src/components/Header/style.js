@@ -5,7 +5,7 @@ import bgMobile from "../../assets/images/image-hero-mobile.jpg";
 export const Container = styled.header`
   height: 250px;
 
-  width: 100vw;
+  /* width: 100vw; */
 
   background-image: url(${bgDesktop});
   background-position: center;

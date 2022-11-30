@@ -2,12 +2,13 @@ import { useState } from "react";
 import Button from "../Button";
 import * as Styled from "./style";
 
-export default function ProjectInformation() {
+import imgClose from "../../assets/images/icon-close-modal.svg";
 
-  const [viewCrowndfund, setViewCrowndfund] = useState(false);
+export default function ProjectInformation() {
+  const [viewCrowndfund, setViewCrowndfund] = useState(true);
 
   function handleViewCrowndfund() {
-    setViewCrowndfund(p=>!p);
+    setViewCrowndfund((p) => !p);
   }
 
   return (
@@ -45,9 +46,7 @@ export default function ProjectInformation() {
             <p>restantes</p>
           </div>
 
-          <Button
-          onClick={handleViewCrowndfund}
-          >selecionar recompensa</Button>
+          <Button onClick={handleViewCrowndfund}>selecionar recompensa</Button>
         </Styled.ContainerButton>
       </Styled.OptionsCrowdfunding>
 
@@ -69,15 +68,11 @@ export default function ProjectInformation() {
             <p>restantes</p>
           </div>
 
-          <Button
-          onClick={handleViewCrowndfund}
-          >selecionar recompensa</Button>
+          <Button onClick={handleViewCrowndfund}>selecionar recompensa</Button>
         </Styled.ContainerButton>
       </Styled.OptionsCrowdfunding>
 
-      <Styled.OptionsCrowdfunding
-      nullOption
-      >
+      <Styled.OptionsCrowdfunding nullOption>
         <Styled.ContainerTitle>
           <h4>mogno edição especial</h4>
           <span>Doar $ 200 ou mais</span>
@@ -95,14 +90,57 @@ export default function ProjectInformation() {
             <p>restantes</p>
           </div>
 
-          <Button bg='#808080' bgHover='#808080' >selecionar recompensa</Button>
+          <Button bg="#808080" bgHover="#808080">
+            selecionar recompensa
+          </Button>
         </Styled.ContainerButton>
       </Styled.OptionsCrowdfunding>
 
       {viewCrowndfund && (
-        <div>
-          <h1>ola mundo</h1>
-        </div>
+        <Styled.ContainerViewCrowndfund>
+          <Styled.ViewCrowndfund>
+            <Styled.HeaderViewCrowndfund>
+              <div>
+                <h5>apoiar este projeto</h5>
+                <p>
+                  quer nos apoiar em trazer riser de monitor de bambu
+                  mastercraft para o mundo?
+                </p>
+              </div>
+              <div>
+                <img src={imgClose} alt="Botão de fechar página" />
+              </div>
+            </Styled.HeaderViewCrowndfund>
+
+            <Styled.ContainerOptionCrowndfund>
+              <div>
+                <input type="radio" name="radio" />
+              </div>
+              <Styled.ContentOptionCrowndfund>
+                <Styled.OptionHeader>
+                  <div>
+                    <h6> suporte de bambu</h6>
+                    <span>Doar $25 ou mais</span>
+                  </div>
+
+                  <div>
+                    <h6>101</h6>
+                    <p>restante</p>
+                  </div>
+                </Styled.OptionHeader>
+
+                <p>
+                  Você obtém um suporte ergonômico feito de bambu natural. Você
+                  nos ajudou a lançar nossa campanha promocional e você será
+                  adicionado a uma lista especial de membros do Backer.
+                </p>
+              </Styled.ContentOptionCrowndfund>
+            </Styled.ContainerOptionCrowndfund>
+
+            
+
+          </Styled.ViewCrowndfund>
+        </Styled.ContainerViewCrowndfund>
       )}
     </Styled.Container>
   );
