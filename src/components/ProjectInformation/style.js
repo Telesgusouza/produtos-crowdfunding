@@ -120,10 +120,14 @@ export const HeaderViewCrowndfund = styled.div`
 
 export const ContainerOptionCrowndfund = styled.div`
   display: flex;
+  flex-direction: column;
 
-  padding: 15px;
   border: 1px solid #c0c0c0;
   border-radius: 5px;
+  margin-top: 15px;
+
+  div {
+  }
 
   input {
     height: 100%;
@@ -131,6 +135,11 @@ export const ContainerOptionCrowndfund = styled.div`
 
     margin-right: 25px;
   }
+`;
+
+export const ContainerContent = styled.div`
+  display: flex;
+  padding: 15px;
 `;
 
 export const ContentOptionCrowndfund = styled.div`
@@ -149,20 +158,71 @@ export const OptionHeader = styled.div`
   }
 
   h6 {
-    font-size: .9em;
+    font-size: 0.9em;
     margin-right: 7px;
     margin-left: -10px;
   }
 
   span {
     color: hsl(176, 50%, 47%);
-    font-size: .8em;
+    font-size: 0.8em;
     font-weight: 600;
   }
 
   p {
-    font-size: .78em;
+    font-size: 0.78em;
   }
 `;
 
+export const ContainerPledge = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #a9a9a9;
+  padding: 15px;
 
+  div {
+    height: 100%;
+    display: flex;
+  }
+  button {
+    padding: 10px 20px;
+  }
+`;
+
+export const InputValue = styled.div`
+  height: 100%;
+
+  /* background-color: red; */
+  position: relative;
+
+  p {
+    position: absolute;
+    left: 15px;
+    bottom: 0px;
+    top: -3px;
+  }
+
+  input {
+    height: 100%;
+    margin: 0;
+    margin-right: 10px;
+
+    border-radius: 20px;
+    border: 1px solid black;
+
+    padding: 8px 27px;
+    padding-right: 20px;
+    width: 80px;
+    text-align: end;
+
+    overflow: hidden;
+    cursor: text;
+    transition: all .15s ease-in-out;
+
+    &:focus {
+      outline: 0;
+      border: 1px solid hsl(176, 50%, 47%);
+    }
+  }
+`;
