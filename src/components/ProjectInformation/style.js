@@ -46,6 +46,14 @@ export const ContainerTitle = styled.div`
     font-weight: 500;
     color: hsl(176, 50%, 47%);
   }
+
+  @media (max-width: 470px) {
+    flex-direction: column;
+
+    h4 {
+      margin-bottom: 5px;
+    }
+  }
 `;
 
 export const ContainerButton = styled.div`
@@ -69,6 +77,15 @@ export const ContainerButton = styled.div`
   button {
     height: 100%;
   }
+
+  @media (max-width: 470px) {
+    flex-direction: column;
+
+    button {
+      margin-top: 14px;
+      width: fit-content;
+    }
+  }
 `;
 
 export const ContainerViewCrowndfund = styled.div`
@@ -81,7 +98,19 @@ export const ContainerViewCrowndfund = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100pc;
+  min-height: 120pc;
+
+  @media (max-width: 470px) {
+    min-height: 150pc;
+  }
+
+  @media (max-width: 395px) {
+    min-height: 160pc;
+  }
+
+  @media (max-width: 335px) {
+    min-height: 220pc;
+  }
 `;
 
 export const ViewCrowndfund = styled.div`
@@ -94,7 +123,7 @@ export const ViewCrowndfund = styled.div`
   padding: 20px;
   border-radius: 5px;
 
-  width: 100%;
+  width: 94%;
   max-width: 700px;
 
   p {
@@ -126,15 +155,23 @@ export const ContainerOptionCrowndfund = styled.div`
   border-radius: 5px;
   margin-top: 15px;
 
-  div {
-  }
-
   input {
     height: 100%;
     cursor: pointer;
 
     margin-right: 25px;
   }
+
+  ${(props) =>
+    props.nullOption &&
+    css`
+      opacity: 0.5;
+      cursor: no-drop;
+
+      input {
+        cursor: no-drop;
+      }
+    `}
 `;
 
 export const ContainerContent = styled.div`
@@ -144,6 +181,22 @@ export const ContainerContent = styled.div`
 
 export const ContentOptionCrowndfund = styled.div`
   width: 100%;
+
+  div:nth-child(3) {
+    display: none;
+    align-items: center;
+
+    h6 {
+      font-size: 1.1em;
+      margin-right: 5px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    div:nth-child(3) {
+      display: flex;
+    }
+  }
 `;
 
 export const OptionHeader = styled.div`
@@ -172,6 +225,21 @@ export const OptionHeader = styled.div`
   p {
     font-size: 0.78em;
   }
+
+  @media (max-width: 500px) {
+    div {
+      flex-direction: column;
+
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+
+    span {
+      margin-left: -${(props) => props.mgSpan}px;
+      margin-top: 5px;
+    }
+  }
 `;
 
 export const ContainerPledge = styled.div`
@@ -187,6 +255,16 @@ export const ContainerPledge = styled.div`
   }
   button {
     padding: 10px 20px;
+  }
+
+  @media (max-width: 440px) {
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+    }
   }
 `;
 
@@ -218,11 +296,40 @@ export const InputValue = styled.div`
 
     overflow: hidden;
     cursor: text;
-    transition: all .15s ease-in-out;
+    transition: all 0.15s ease-in-out;
 
     &:focus {
       outline: 0;
       border: 1px solid hsl(176, 50%, 47%);
     }
+  }
+`;
+
+export const ContainerConfirm = styled.div`
+  background-color: white;
+  height: fit-content;
+
+  width: 90%;
+  max-width: 500px;
+  margin-top: 50px;
+  padding: 28px 24px;
+  border-radius: 7px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  img {
+    margin-bottom: 22px;
+  }
+
+  h6 {
+    font-size: 1.3em;
+  }
+
+  p {
+    margin: 27px 0;
   }
 `;

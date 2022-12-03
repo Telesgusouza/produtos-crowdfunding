@@ -3,34 +3,50 @@ import Button from "../Button";
 import * as Styled from "./style";
 
 import imgClose from "../../assets/images/icon-close-modal.svg";
-// import imgSearch from '../../assets/images/search.svg';
+import imgChcked from "../../assets/images/icon-check.svg";
 
 export default function ProjectInformation() {
-  const [viewCrowndfund, setViewCrowndfund] = useState(true);
+  const [viewCrowndfund, setViewCrowndfund] = useState(false);
 
   const [optionCrowndfund, setOptionCrowndfund] = useState("");
+  const [confirmDonation, setConfirmDonation] = useState(true);
   const [search, setSearch] = useState("");
 
   function handleViewCrowndfund() {
+    window.scrollTo(0, 0);
     setViewCrowndfund((p) => !p);
   }
 
   function option(value) {
     setOptionCrowndfund(value);
 
-    if(value != optionCrowndfund) {
+    if (value != optionCrowndfund) {
       setSearch("");
-    };
+    }
+  }
+
+  function confirm(valueMin) {
+    if (Number(search) >= valueMin) {
+      setConfirmDonation(true);
+      setViewCrowndfund(false);
+    } else {
+      alert("valor n corresponde ao minimo requerido");
+    }
   }
 
   function handleSearch(value) {
     const regOp = /[.,/?°\|!@#$%&*()_+{}"¨'<>ç]/;
     const regText = /[a-zA-Z]/;
 
-
-    if ( !regOp.test(value) && !regText.test(value) && search < 999) {
+    if (!regOp.test(value) && !regText.test(value) && search < 999) {
       setSearch(value);
     }
+  }
+
+  function close() {
+    setConfirmDonation(false);
+    setViewCrowndfund(false);
+    setOptionCrowndfund('');
   }
 
   return (
@@ -118,195 +134,224 @@ export default function ProjectInformation() {
         </Styled.ContainerButton>
       </Styled.OptionsCrowdfunding>
 
-      <Styled.ContainerViewCrowndfund>
-        <Styled.ViewCrowndfund>
-          <Styled.HeaderViewCrowndfund>
-            <div>
-              <h5>Sobre este projeto</h5>
-              <p>
-                quer nos apoiar em trazer riser de monitor de bambu mastercraft
-                para o mundo?
-              </p>
-            </div>
-            <div>
-              <img src={imgClose} alt="Botão de fechar página" />
-            </div>
-          </Styled.HeaderViewCrowndfund>
+      {confirmDonation && (
+        <Styled.ContainerViewCrowndfund>
+          <Styled.ContainerConfirm>
+            <img src={imgChcked} alt="logo de confirmação" />
+            <h6>Obrigado pelo seu apoio!</h6>
+            <p>
+              Sua doação nos deixa um passo mais perto de compartilhar o
+              Mastercraft Bamboo Monitor Riser em todo o mundo. Você vai ter um
+              e-mail assim que nossa campanha for concluída.
+            </p>
+            <Button onClick={close} >Entendi</Button>
+          </Styled.ContainerConfirm>
+        </Styled.ContainerViewCrowndfund>
+      )}
 
-          {/*  */}
-
-          <Styled.ContainerOptionCrowndfund>
-            <Styled.ContainerContent>
-              <input
-                type="radio"
-                name="radio"
-                onClick={() => {
-                  option("promessasemrecompensa");
-                }}
-              />
-              <Styled.ContentOptionCrowndfund>
-                <Styled.OptionHeader>
-                  <div>
-                    <h6>Promessa sem recompensa</h6>
-                  </div>
-                </Styled.OptionHeader>
-
+      {viewCrowndfund && (
+        <Styled.ContainerViewCrowndfund>
+          <Styled.ViewCrowndfund>
+            <Styled.HeaderViewCrowndfund>
+              <div>
+                <h5>Sobre este projeto</h5>
                 <p>
-                  Escolha nos apoiar sem recompensa se você simplesmente
-                  acreditar em nosso projeto. Como apoiador, você se inscreverá
-                  para receber atualizações de produtos por e-mail.
+                  quer nos apoiar em trazer riser de monitor de bambu
+                  mastercraft para o mundo?
                 </p>
-              </Styled.ContentOptionCrowndfund>
-            </Styled.ContainerContent>
+              </div>
+              <div>
+                <img
+                  src={imgClose}
+                  alt="Botão de fechar página"
+                  onClick={handleViewCrowndfund}
+                />
+              </div>
+            </Styled.HeaderViewCrowndfund>
 
-            {optionCrowndfund === "promessasemrecompensa" && (
-              <Styled.ContainerPledge>
-                <p>ensira sua doação</p>
-                <div>
-                  <Styled.InputValue>
-                    <p>$</p>
-                    <input
-                      type="text"
-                      placeholder="0"
-                      value={search}
-                      onChange={(e) => handleSearch(e.target.value)}
-                    />
-                  </Styled.InputValue>
-                  <Button>Continue</Button>
-                </div>
-              </Styled.ContainerPledge>
-            )}
-          </Styled.ContainerOptionCrowndfund>
+            {/*  */}
 
-          <Styled.ContainerOptionCrowndfund>
-            <Styled.ContainerContent>
-              <input
-                type="radio"
-                name="radio"
-                onClick={() => {
-                  option("suportedebambu");
-                }}
-              />
+            <Styled.ContainerOptionCrowndfund>
+              <Styled.ContainerContent>
+                <input
+                  type="radio"
+                  name="radio"
+                  onClick={() => {
+                    option("promessasemrecompensa");
+                  }}
+                />
+                <Styled.ContentOptionCrowndfund>
+                  <Styled.OptionHeader>
+                    <div>
+                      <h6>Promessa sem recompensa</h6>
+                    </div>
+                  </Styled.OptionHeader>
 
-              <Styled.ContentOptionCrowndfund>
-                <Styled.OptionHeader>
+                  <p>
+                    Escolha nos apoiar sem recompensa se você simplesmente
+                    acreditar em nosso projeto. Como apoiador, você se
+                    inscreverá para receber atualizações de produtos por e-mail.
+                  </p>
+                </Styled.ContentOptionCrowndfund>
+              </Styled.ContainerContent>
+
+              {optionCrowndfund === "promessasemrecompensa" && (
+                <Styled.ContainerPledge>
+                  <p>ensira sua doação</p>
                   <div>
-                    <h6> suporte de bambu</h6>
-                    <span>Doar $25 ou mais</span>
+                    <Styled.InputValue>
+                      <p>$</p>
+                      <input
+                        type="text"
+                        placeholder="0"
+                        value={search}
+                        onChange={(e) => handleSearch(e.target.value)}
+                      />
+                    </Styled.InputValue>
+                    <Button onClick={() => confirm(1)}>Continue</Button>
                   </div>
+                </Styled.ContainerPledge>
+              )}
+            </Styled.ContainerOptionCrowndfund>
+
+            <Styled.ContainerOptionCrowndfund>
+              <Styled.ContainerContent>
+                <input
+                  type="radio"
+                  name="radio"
+                  onClick={() => {
+                    option("suportedebambu");
+                  }}
+                />
+
+                <Styled.ContentOptionCrowndfund>
+                  <Styled.OptionHeader mgSpan={34}>
+                    <div>
+                      <h6> suporte de bambu</h6>
+                      <span>Doar $25 ou mais</span>
+                    </div>
+
+                    <div>
+                      <h6>101</h6>
+                      <p>restante</p>
+                    </div>
+                  </Styled.OptionHeader>
+
+                  <p>
+                    Você obtém um suporte ergonômico feito de bambu natural.
+                    Você nos ajudou a lançar nossa campanha promocional e você
+                    será adicionado a uma lista especial de membros do Backer.
+                  </p>
 
                   <div>
                     <h6>101</h6>
                     <p>restante</p>
                   </div>
-                </Styled.OptionHeader>
+                </Styled.ContentOptionCrowndfund>
+              </Styled.ContainerContent>
 
-                <p>
-                  Você obtém um suporte ergonômico feito de bambu natural. Você
-                  nos ajudou a lançar nossa campanha promocional e você será
-                  adicionado a uma lista especial de membros do Backer.
-                </p>
-              </Styled.ContentOptionCrowndfund>
-            </Styled.ContainerContent>
-
-            {optionCrowndfund === "suportedebambu" && (
-              <Styled.ContainerPledge>
-                <p>ensira sua doação</p>
-                <div>
-                  <Styled.InputValue>
-                    <p>$</p>
-                    <input
-                      type="text"
-                      placeholder="0"
-                      value={search}
-                      onChange={(e) => handleSearch(e.target.value)}
-                    />
-                  </Styled.InputValue>
-                  <Button>Continue</Button>
-                </div>
-              </Styled.ContainerPledge>
-            )}
-          </Styled.ContainerOptionCrowndfund>
-
-          <Styled.ContainerOptionCrowndfund>
-            <Styled.ContainerContent>
-              <input
-                type="radio"
-                name="radio"
-                onClick={() => {
-                  option("suporteediçãopreta");
-                }}
-              />
-
-              <Styled.ContentOptionCrowndfund>
-                <Styled.OptionHeader>
+              {optionCrowndfund === "suportedebambu" && (
+                <Styled.ContainerPledge>
+                  <p>ensira sua doação</p>
                   <div>
-                    <h6>Suporte edição preta</h6>
-                    <span>Doar $75 ou mais</span>
+                    <Styled.InputValue>
+                      <p>$</p>
+                      <input
+                        type="text"
+                        placeholder="0"
+                        value={search}
+                        onChange={(e) => handleSearch(e.target.value)}
+                      />
+                    </Styled.InputValue>
+                    <Button onClick={() => confirm(25)}>Continue</Button>
                   </div>
+                </Styled.ContainerPledge>
+              )}
+            </Styled.ContainerOptionCrowndfund>
+
+            <Styled.ContainerOptionCrowndfund>
+              <Styled.ContainerContent>
+                <input
+                  type="radio"
+                  name="radio"
+                  onClick={() => {
+                    option("suporteediçãopreta");
+                  }}
+                />
+
+                <Styled.ContentOptionCrowndfund>
+                  <Styled.OptionHeader mgSpan={51}>
+                    <div>
+                      <h6>Suporte edição preta</h6>
+                      <span>Doar $75 ou mais</span>
+                    </div>
+
+                    <div>
+                      <h6>64</h6>
+                      <p>restante</p>
+                    </div>
+                  </Styled.OptionHeader>
+
+                  <p>
+                    Você recebe um suporte de computador Black Special Edition e
+                    um agradecimento pessoal. Você será adicionado ao nosso
+                    Apoiador lista de membros. O envio está incluído.
+                  </p>
 
                   <div>
                     <h6>64</h6>
                     <p>restante</p>
                   </div>
-                </Styled.OptionHeader>
-
-                <p>
-                  Você recebe um suporte de computador Black Special Edition e
-                  um agradecimento pessoal. Você será adicionado ao nosso
-                  Apoiador lista de membros. O envio está incluído.
-                </p>
-              </Styled.ContentOptionCrowndfund>
-            </Styled.ContainerContent>
-            {optionCrowndfund === "suporteediçãopreta" && (
-              <Styled.ContainerPledge>
-                <p>ensira sua doação</p>
-                <div>
-                  <Styled.InputValue>
-                    <p>$</p>
-                    <input
-                      type="text"
-                      placeholder="0"
-                      value={search}
-                      onChange={(e) => handleSearch(e.target.value)}
-                    />
-                  </Styled.InputValue>
-                  <Button>Continue</Button>
-                </div>
-              </Styled.ContainerPledge>
-            )}
-          </Styled.ContainerOptionCrowndfund>
-
-          <Styled.ContainerOptionCrowndfund>
-            <Styled.ContainerContent>
-              <input type="radio" name="radio" />
-
-              <Styled.ContentOptionCrowndfund>
-                <Styled.OptionHeader>
+                </Styled.ContentOptionCrowndfund>
+              </Styled.ContainerContent>
+              {optionCrowndfund === "suporteediçãopreta" && (
+                <Styled.ContainerPledge>
+                  <p>ensira sua doação</p>
                   <div>
-                    <h6>Mogno edição especial</h6>
-                    <span>Doar $200 ou mais</span>
+                    <Styled.InputValue>
+                      <p>$</p>
+                      <input
+                        type="text"
+                        placeholder="0"
+                        value={search}
+                        onChange={(e) => handleSearch(e.target.value)}
+                      />
+                    </Styled.InputValue>
+                    <Button onClick={() => confirm(75)}>Continue</Button>
                   </div>
+                </Styled.ContainerPledge>
+              )}
+            </Styled.ContainerOptionCrowndfund>
 
-                  <div>
-                    <h6>0</h6>
-                    <p>restante</p>
-                  </div>
-                </Styled.OptionHeader>
+            <Styled.ContainerOptionCrowndfund nullOption>
+              <Styled.ContainerContent>
+                <input type="radio" name="radio" checked={false} />
 
-                <p>
-                  Você ganha dois estandes de mogno da edição especial, uma
-                  camiseta do Backer e um agradecimento pessoal. você será
-                  adicionado à nossa lista de membros do Backer. O envio está
-                  incluído.
-                </p>
-              </Styled.ContentOptionCrowndfund>
-            </Styled.ContainerContent>
-          </Styled.ContainerOptionCrowndfund>
+                <Styled.ContentOptionCrowndfund>
+                  <Styled.OptionHeader mgSpan={52}>
+                    <div>
+                      <h6>Mogno edição especial</h6>
+                      <span>Doar $200 ou mais</span>
+                    </div>
 
-          {/*  */}
-        </Styled.ViewCrowndfund>
-      </Styled.ContainerViewCrowndfund>
+                    <div>
+                      <h6>0</h6>
+                      <p>restante</p>
+                    </div>
+                  </Styled.OptionHeader>
+
+                  <p>
+                    Você ganha dois estandes de mogno da edição especial, uma
+                    camiseta do Backer e um agradecimento pessoal. você será
+                    adicionado à nossa lista de membros do Backer. O envio está
+                    incluído.
+                  </p>
+                </Styled.ContentOptionCrowndfund>
+              </Styled.ContainerContent>
+            </Styled.ContainerOptionCrowndfund>
+          </Styled.ViewCrowndfund>
+        </Styled.ContainerViewCrowndfund>
+      )}
     </Styled.Container>
   );
 }

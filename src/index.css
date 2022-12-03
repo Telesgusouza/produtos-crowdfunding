@@ -18,6 +18,7 @@ code {
   box-sizing: border-box;
   font-family: "Commissioner", sans-serif;
   /* 400, 500, 700 */
+  scroll-behavior: smooth;
 }
 
 .center {

@@ -29,6 +29,20 @@ export const ContainerValue = styled.div`
       border: none;
     }
   }
+
+  @media (max-width: 460px) {
+    grid-template-columns: 1fr;
+
+    div {
+      margin: 0 auto;
+      width: fit-content;
+      padding: 10px 0;
+      border: none;
+      text-align: center;
+
+      border-bottom: 1px solid #c0c0c0;
+    }
+  }
 `;
 
 export const navBar = styled.div`

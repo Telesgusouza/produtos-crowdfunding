@@ -63,4 +63,10 @@ export const bookmark = styled.div`
     top: 0;
     height: 100%;
   }
+
+  @media (max-width: 460px) {
+    p {
+      display: none;
+    }
+  }
 `;
