@@ -9,7 +9,7 @@ export default function ProjectInformation() {
   const [viewCrowndfund, setViewCrowndfund] = useState(false);
 
   const [optionCrowndfund, setOptionCrowndfund] = useState("");
-  const [confirmDonation, setConfirmDonation] = useState(true);
+  const [confirmDonation, setConfirmDonation] = useState(false);
   const [search, setSearch] = useState("");
 
   function handleViewCrowndfund() {
